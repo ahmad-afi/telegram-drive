@@ -1,15 +1,33 @@
 # Telegram Drive — Backend
 
 Go + Fiber wrapper for Telegram MTProto (gotd/td). **Stateless**: the server stores nothing — each request carries the user's session string in an `X-Session` header. Files live in the user's own Saved Messages.
-
 ## Prerequisites
+
 - Go 1.26+
 - A Telegram API app: get `api_id` + `api_hash` from https://my.telegram.org
+
+## Getting Telegram API Credentials
+
+1. Buka **https://my.telegram.org** dan login dengan nomor HP Telegram kamu.
+2. Klik **API development tools**.
+3. Isi **App title** dan **Short name** (bebas, misal `Telegram Drive`).
+4. Pilih platform **Other**, klik **Create application**.
+5. Salin **App api_id** (angka) → taruh di `.env` sebagai `TG_APP_ID`.
+6. Salin **App api_hash** (string) → taruh di `.env` sebagai `TG_APP_HASH`.
+
+## Environment Variables
+
+| Var | Required | Default | Description |
+|-----|----------|---------|-------------|
+| `TG_APP_ID` | yes | — | Telegram App ID dari my.telegram.org |
+| `TG_APP_HASH` | yes | — | Telegram App Hash dari my.telegram.org |
+| `PORT` | no | `8080` | Port backend |
+| `CORS_ORIGIN` | no | `*` | Comma-separated allowed origins (misal `http://localhost:3000,https://app.example.com`) |
 
 ## Setup
 
 ```sh
-cp .env.example .env   # fill TG_APP_ID, TG_APP_HASH
+cp .env.example .env   # isi TG_APP_ID dan TG_APP_HASH dari my.telegram.org
 go mod tidy
 ```
 
